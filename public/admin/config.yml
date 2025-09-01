@@ -1,0 +1,70 @@
+backend:
+  name: git-gateway        # работаем через Netlify Identity + Git Gateway
+  branch: main             # ветка в которую будут делаться коммиты
+
+media_folder: "public/uploads"   # куда класть файлы в репо
+public_folder: "https://cdn.jsdelivr.net/gh/<owner>/<repo>@main/public/uploads" 
+# так в полях будут сохраняться абсолютные CDN-ссылки на изображения, чтобы статический сайт мог их сразу грузить
+
+site_url: "https://<ВАШ-netlify-сайт>.netlify.app"   # после шага 4 укажите реальный URL admin-сайта (не критично на первом запуске)
+logo_url: "/icons/logo.svg"  # необязательно
+
+collections:
+  # КЕЙСЫ
+  - name: "cases"
+    label: "Кейсы"
+    label_singular: "Кейс"
+    folder: "content/cases"
+    create: true
+    format: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Слаг (URL)", name: "slug", widget: "string", hint: "например: cifrovaya-transformaciya" }
+      - { label: "Краткое описание", name: "excerpt", widget: "text" }
+      - { label: "Основной текст (Markdown)", name: "body", widget: "markdown" }
+      - { label: "Обложка (карточка)", name: "coverUrl", widget: "image" }
+      - label: "Галерея"
+        name: "gallery"
+        widget: "list"
+        fields:
+          - { label: "Изображение", name: "src", widget: "image" }
+          - { label: "Alt", name: "alt", widget: "string", required: false }
+          - { label: "Zoom?", name: "zoomable", widget: "boolean", default: true, hint: "Если в тексте/галерее нужно увеличивать" }
+      - { label: "Отрасль", name: "industry", widget: "string", required: false }
+      - { label: "Тип решения", name: "application", widget: "string", required: false }
+      - { label: "Локация", name: "location", widget: "string", required: false }
+      - { label: "Дата", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
+
+  # БЛОГ
+  - name: "blog"
+    label: "Блог"
+    folder: "content/blog"
+    create: true
+    format: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Слаг (URL)", name: "slug", widget: "string" }
+      - { label: "Краткое описание", name: "excerpt", widget: "text" }
+      - { label: "Текст (Markdown)", name: "body", widget: "markdown" }
+      - { label: "Обложка", name: "coverUrl", widget: "image" }
+      - { label: "Дата", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
+
+  # НОВОСТИ
+  - name: "news"
+    label: "Новости"
+    folder: "content/news"
+    create: true
+    format: "json"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Слаг (URL)", name: "slug", widget: "string" }
+      - { label: "Краткое описание", name: "excerpt", widget: "text" }
+      - { label: "Текст (Markdown)", name: "body", widget: "markdown" }
+      - { label: "Обложка", name: "coverUrl", widget: "image" }
+      - { label: "Дата", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Опубликовано", name: "published", widget: "boolean", default: true }
