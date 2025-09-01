@@ -6,7 +6,7 @@ media_folder: "public/uploads"   # куда класть файлы в репо
 public_folder: "https://cdn.jsdelivr.net/gh/edinayasredarf-png/company-content@main/public/uploads" 
 # так в полях будут сохраняться абсолютные CDN-ссылки на изображения, чтобы статический сайт мог их сразу грузить
 
-site_url: "https://<ВАШ-netlify-сайт>.netlify.app"   # после шага 4 укажите реальный URL admin-сайта (не критично на первом запуске)
+site_url: "https://courageous-dolphin-19a998.netlify.app"   # после шага 4 укажите реальный URL admin-сайта (не критично на первом запуске)
 logo_url: "/icons/logo.svg"  # необязательно
 
 collections:
